@@ -75,7 +75,7 @@ resource "aws_security_group" "webserver" {
 
 
 output "dev_server_ip" {
-  value = aws_eip.pstatic_ip_dev.public_ip
+  value = aws_eip.static_ip_dev.public_ip
 }
 output "prod_server_ip" {
   value = aws_eip.static_ip_prod.public_ip
