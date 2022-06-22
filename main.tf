@@ -17,7 +17,6 @@ resource "aws_instance" "project_serv" {
   instance_type = "t2.micro"
 
   key_name               = "id_rsa"
-  availability_zone      = "eu-central-1"
   vpc_security_group_ids = [aws_security_group.webserver.id]
 
 }
