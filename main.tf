@@ -100,3 +100,11 @@ output "dev_server_ip" {
 output "prod_server_ip" {
   value = aws_eip.static_ip_prod.public_ip
 }
+
+output "public_ip_dev_server"{
+  value = aws_instance.dev_server.public_ip
+}
+
+output "public_ip_prod_server"{
+  value = aws_instance.prod_server.public_ip
+}
