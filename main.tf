@@ -40,7 +40,7 @@ resource "aws_instance" "prod_server" {
   key_name = "id_rsa"
   vpc_security_group_ids = [aws_security_group.webserver.id]
    tags = {
-    Name = "Dev_Server"
+    Name = "Prod_Server"
     Owner = "Shizgara"
     Project = "Simple Website"
   }
