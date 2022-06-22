@@ -13,7 +13,7 @@ resource "aws_eip" "static_ip_1" {
 
 resource "aws_instance" "project_serv" {
   count         = 2
-  ami           = "ami-0fb653ca2d3203ac1"
+  ami           = "ami-0c9354388bb36c088"
   instance_type = "t2.micro"
 
   key_name               = "id_rsa"
