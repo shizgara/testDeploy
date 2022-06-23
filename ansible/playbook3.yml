@@ -1,0 +1,30 @@
+
+---
+- name: Install apache and upload my WebPage
+  hosts: all
+  become: yes
+
+# Stvorulu zminni v yaki pomistulu wlyah do index.html i shlyah kydu danuy file copy
+  vars:
+    source_file: ./MyWebSite/index.html
+    destin_file: /var/www/html
+
+  tasks:
+#sudo apt update
+  - name: Update upt-get repo
+    apt: update_cache=yes force_apt_get=yes cache_valid_time=86400  
+# sudo apt install apache2
+  - name: Install Apache Web Server
+    apt: name=apache2 state=latest
+# Copy index.html to apache server, and copy when index.html changed
+  - name: Copy MyHomePage to Servers
+    copy: src={{ source_file }} dest={{ destin_file }} mode=0555
+    notify: Restart Apache
+#Start Apache and pomistulu yogo v avtozagruzku
+  - name: Start WebServer and Enable on boot
+    service: name=apache2 state=started enabled=yes
+
+# Takuy sobi peremukach, vkazuye wo robutu kolu v taski kydu yogo pidvyazalu vidbulus zminu(v files). Vuzuvayetsa 4erez comandu - notify:nazva_handlera
+  handlers:
+  - name: Restart Apache
+    service: name=apache2 state=restarted

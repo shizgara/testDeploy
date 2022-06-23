@@ -1,6 +1,7 @@
 
 [dev_server]
-ubuntu_dev     ansible_host=3.72.126.196         ansible_user=ubuntu     ansible_ssh_private_key_file=/home/shizgara/.ssh/id_rsa
+ubuntu_dev     ansible_host=3.71.138.24
 
 [prod_server]
-ubuntu_prod    ansible_host=3.74.139.14         ansible_user=ubuntu     ansible_ssh_private_key_file=/home/shizgara/.ssh/id_rsa
+ubuntu_prod    ansible_host=3.72.129.41
+
