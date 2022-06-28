@@ -1,0 +1,25 @@
+
+---
+- name: Install Apache and upload my WebPage
+  hosts: tag_Name_Dev_Server
+  become : yes
+
+
+# Create variables
+  vars:
+    source_file:
+    destin_file:
+
+  tasks:
+
+# sudo apt update
+  - name: Update upt-get repo
+    apt: update_cache=yes force_apt_get=yes cache_valid_time=86400
+
+# sudo apt install apache
+  - name: Install Apache Wev Server
+    apt: name=apache2 state=latest
+
+# Start Apache and put him in boot
+  - name: Start Apache and enable on boot
+    service: name=apache2 state=started enabled=yes
