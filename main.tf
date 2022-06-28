@@ -23,34 +23,34 @@ resource "aws_eip" "static_ip_prod" {
 
 # Create instances
 resource "aws_instance" "dev_server" {
-    ami = data.aws_ami.latest_ubuntu.id
-  instance_type = "t2.micro"
+  ami                    = data.aws_ami.latest_ubuntu.id
+  instance_type          = "t2.micro"
   key_name               = "id_rsa"
   vpc_security_group_ids = [aws_security_group.webserver.id]
   tags = {
-    Name = "Dev_Server"
-    Owner = "Shizgara"
+    Name    = "Dev_Server"
+    Owner   = "Shizgara"
     Project = "Simple Website"
   }
 }
 
 resource "aws_instance" "prod_server" {
-  ami = data.aws_ami.latest_ubuntu.id
-  instance_type = "t2.micro"
-  key_name = "id_rsa"
+  ami                    = data.aws_ami.latest_ubuntu.id
+  instance_type          = "t2.micro"
+  key_name               = "id_rsa"
   vpc_security_group_ids = [aws_security_group.webserver.id]
-   tags = {
-    Name = "Prod_Server"
-    Owner = "Shizgara"
+  tags = {
+    Name    = "Prod_Server"
+    Owner   = "Shizgara"
     Project = "Simple Website"
   }
 }
 
 
- # Create key-pair
+# Create key-pair
 resource "aws_key_pair" "project" {
   key_name   = "id_rsa"
-  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCnrMGyvMoOmAlRKTMRR+/G+PB2W9Fz6VEFMbpgplIToiWn3NgUKse5WFFIfWy2NjRFz04Foav2H/ssSpEcbrV1lMniGu3QKlyXM/6tcqCEZLcfAUggoUb/qXEyBbRSP8OvOZxqr41+i7687GPgAORlrez3K2KLF2nfTv565dqk2oVT6qwUOv5AUbPdD/JJO9KmaqOTBmCsBP9MLR2kRPUp2S2uNJBNab+4cMzApCVoXXvdbCu557steHYQvA8xHzN+R2TIi5DMjq/j2GwOzVpXtEinyl5Fpku/YtKqYhJQVPp1zeB9/o5TesvRzg/9k5U2joWq+zwt5tX/kwH5p775JU/47DAPDyb0dm8KrHKZs0rEjmUxirGx3R+VimVwKUopMNcuh06DC3AczlCLy2LOkSQup+VU637T4qM629+HdRleilcwGy6z0iiaqZRqQGQEgNXYSjFXqaztA+BUtdG70VkHBu4DNH6T9SncLtW409MDuVP6rLz3TtKG7A97/40= shizgara@shizgaraUbuntu"
+  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDMLQPsk1ewvXL0LLMe8UlLqcCU3YWP7dYHTTw8T1QW2i8Sh369SMFgRO2vL3lkZgB++PEHpELgdn8Wty1Odng9nA0OGssn7t0fGc2/6a+OwQIHADIJr0/I9RcHFUFe+QpK01lRgZ9FFVT4UhkgKZ79tshMa6vMs/agmgQEz/k2prN1od2Ld03AauyB+N5KIWBJu5ZPDYh4P5aKlIL9vAP5QuOa4PZH7yh4S+RGzNgIDw42XRPad0JQnY3r3T8a0hD5Ckwp5lD7185Sad50Mm4ixozGr8a7oSC9+zOVJ2yPPFY/FPfBhyutUhtnz96hjmm3CTLxfJ+/ntPiY4OyLKywdSthTl36MmIXU35dAd4YxKwSQpHmqHxkoLxDKG/s6/sJ/59XK14nMjEUJ/YuDX9kBT/fciawEKlpRFh9DLgCSA8EUcrN0n8TU0oAgLyb29JAwS1bFtzlw++y573PryeAuutvtNDyOfEpF49Amo34ZTpaFcUm9xAj2E7HmwuHG7s= shizgara@ubuntu20"
 
 }
 
@@ -101,10 +101,10 @@ output "prod_server_ip" {
   value = aws_eip.static_ip_prod.public_ip
 }
 
-output "public_ip_dev_server"{
+output "public_ip_dev_server" {
   value = aws_instance.dev_server.public_ip
 }
 
-output "public_ip_prod_server"{
+output "public_ip_prod_server" {
   value = aws_instance.prod_server.public_ip
 }
