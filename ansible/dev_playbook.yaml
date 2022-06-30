@@ -2,6 +2,7 @@
 ---
 - name: Ping dymanic inventory
   hosts: Dev_Server
+  become: yes
 
   tasks:
   - name: ping dynamic inventory
