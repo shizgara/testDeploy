@@ -6,3 +6,9 @@
   tasks:
   - name: ping dynamic inventory
     ping:
+
+  - name: sudo apt update
+    apt: update_cache=yes force_apt_get=yes cache_valid_time=86400
+
+  - name: Install Apache server
+    apt: name = apache2 state = latest 
