@@ -31,6 +31,7 @@ resource "aws_instance" "dev_server" {
     Name    = "Dev_Server"
     Owner   = "Shizgara"
     Project = "Simple Website"
+    OS = "node"
   }
 }
 
@@ -43,6 +44,7 @@ resource "aws_instance" "prod_server" {
     Name    = "Prod_Server"
     Owner   = "Shizgara"
     Project = "Simple Website"
+    OS = "ubuntu"
   }
 }
 
