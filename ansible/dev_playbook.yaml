@@ -1,0 +1,8 @@
+ 
+---
+- name: Ping dymanic inventory
+  hosts: Dev_Server
+
+  tasks:
+  - name: ping dynamic inventory
+    ping:

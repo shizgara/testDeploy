@@ -1,0 +1,9 @@
+plugin: aws_ec2
+aws_profile: default
+regions:
+  - eu-central-1
+hostnames:
+  - ip-address
+groups:
+  Prod_Server: "'Prod_Server' in tags.Name"
+  Dev_Server: "'Dev_Server' in tags.name"
