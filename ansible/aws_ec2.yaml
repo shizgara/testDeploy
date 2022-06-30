@@ -6,4 +6,4 @@ hostnames:
   - ip-address
 groups:
   Prod_Server: "'Prod_Server' in tags.Name"
-  Dev_Server: "'Dev_Server' in tags.name"
+  Dev_Server: "'Dev_Server' in tags.Name"
