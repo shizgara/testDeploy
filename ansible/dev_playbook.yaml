@@ -2,7 +2,7 @@
 ---
 - name: Install Apache and upload my WebPage
   hosts: tag_Name_Dev_Server
-  become : yes
+  become: yes
 
 
  # Create variables
