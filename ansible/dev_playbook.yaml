@@ -1,15 +1,49 @@
  
 ---
-- name: Ping dymanic inventory
-  hosts: Dev_Server
-  become: yes
+- name: Install Apache and upload my WebPage
+  hosts: tag_Name_Dev_Server
+  become : yes
 
   tasks:
   - name: ping dynamic inventory
     ping:
 
-  - name: sudo apt update
+  # Create variables
+  vars:
+    source_dir: ../MyWebSite
+    destin_dir: /var/www/html
+
+  tasks:
+
+- block: # For Ubuntu
+
+  - name: Check Linus ditrib
+    debug : var=ansible_os_family
+
+# sudo apt update
+  - name: Update upt-get repo
     apt: update_cache=yes force_apt_get=yes cache_valid_time=86400
 
-  - name: Install Apache server
-    apt: name=apache2 state=latest 
+# sudo apt install apache
+  - name: Install Apache Wev Server
+    apt: name=apache2 state=latest
+
+# Start Apache and put him in boot
+  - name: Start Apache and enable on boot
+    service: name=apache2 state=started enabled=yes
+
+  when: ansible_os_family == "Debian"
+
+  - name: Copy dir "MyWebSite" to target server
+    copy: src= {{ source_dir }}  {{ destin_dir }} mode =0555
+    loop:
+     - "index.html"
+     - "1.jpg"
+    notify: 
+        - Restart Apache Debian
+
+
+  handlers:
+  - name: Restart Apache Debian
+    service: name=apache2 state=restarted
+    when: ansible_os_family == "Debian"
