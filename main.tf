@@ -13,12 +13,12 @@ data "aws_ami" "latest_ubuntu" {
 
 
 # Create elastic IP
-resource "aws_eip" "static_ip_dev" {
-  instance = aws_instance.dev_server.id
-}
-resource "aws_eip" "static_ip_prod" {
-  instance = aws_instance.prod_server.id
-}
+#resource "aws_eip" "static_ip_dev" {
+#  instance = aws_instance.dev_server.id
+#}
+#resource "aws_eip" "static_ip_prod" {
+#  instance = aws_instance.prod_server.id
+#}
 
 
 # Create instances
