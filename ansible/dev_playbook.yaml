@@ -15,8 +15,6 @@
 
   tasks:
 
-- block: # For Ubuntu
-
   - name: Check Linus ditrib
     debug : var=ansible_os_family
 
@@ -32,7 +30,6 @@
   - name: Start Apache and enable on boot
     service: name=apache2 state=started enabled=yes
 
-  when: ansible_os_family == "Debian"
 
   - name: Copy dir "MyWebSite" to target server
     copy: src= {{ source_dir }}  {{ destin_dir }} mode =0555
@@ -46,4 +43,3 @@
   handlers:
   - name: Restart Apache Debian
     service: name=apache2 state=restarted
-    when: ansible_os_family == "Debian"
