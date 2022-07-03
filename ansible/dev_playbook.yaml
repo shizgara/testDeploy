@@ -33,10 +33,10 @@
   - name: Copy dir "MyWebSite" to target server
     copy: src={{ source_dir }}/{{ item }}  dest={{ destin_dir }} mode =0555
     loop:
-      - "index.html"
-      - "1.jpg"
+       - "index.html"
+       - "1.jpg"
     notify: 
-        - Restart Apache Debian
+       - Restart Apache Debian
 
 
   handlers:
