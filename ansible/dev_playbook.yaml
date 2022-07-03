@@ -5,15 +5,14 @@
   become : yes
 
   tasks:
-  - name: ping dynamic inventory
-    ping:
 
   # Create variables
   vars:
     source_dir: ../MyWebSite
     destin_dir: /var/www/html
-
-  tasks:
+  
+  - name: ping dynamic inventory
+    ping:
 
   - name: Check Linus ditrib
     debug : var=ansible_os_family
