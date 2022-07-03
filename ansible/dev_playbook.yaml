@@ -6,7 +6,7 @@
 
 # Create variables
   vars:
-    source_dir: ./MyWebSite
+    source_dir: ../MyWebSite
     destin_dir: /var/www/html
 
     
