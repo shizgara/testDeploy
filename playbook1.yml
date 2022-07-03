@@ -7,10 +7,15 @@
 
 # Create variables
   vars:
-    source_file:
-    destin_file:
+    source_dir: ./MyWebSite
+    destin_dir: /var/www/html
 
   tasks:
+
+- block: # For Ubuntu
+
+  - name: Check Linus ditrib
+    debug : var=ansible_os_family
 
 # sudo apt update
   - name: Update upt-get repo
@@ -23,3 +28,20 @@
 # Start Apache and put him in boot
   - name: Start Apache and enable on boot
     service: name=apache2 state=started enabled=yes
+
+  when: ansible_os_family == "Debian"
+
+
+  - name: Copy dir "MyWebSite" to target server
+    copy: src= {{ source_dir }}  {{ destin_dir }} mode =0555
+    loop:
+     - "index.html"
+     - "1.jpg"
+    notify: 
+        - Restart Apache Debian
+
+
+  handlers:
+  - name: Restart Apache Debian
+    service: name=apache2 state=restarted
+    when: ansible_os_family == "Debian"
