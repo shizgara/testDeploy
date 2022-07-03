@@ -1,7 +1,7 @@
  
 ---
 - name: Install Apache and upload my WebPage
-  hosts: tag_Name_Dev_Server
+  hosts: Dev_Server
   become: yes
 
 # Create variables
@@ -14,3 +14,13 @@
   
   - name: ping dynamic inventory
     ping:
+
+  - name: Check Linus ditrib
+    debug : var=ansible_os_family
+
+# sudo apt update
+  - name: Update upt-get repo
+    apt: update_cache=yes force_apt_get=yes cache_valid_time=86400
+
+  - name: Install Apache WebServer
+    apt: name=apache2 state=latest
