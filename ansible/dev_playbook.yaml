@@ -22,5 +22,23 @@
   - name: Update upt-get repo
     apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
 
+# sudo apt install apache
   - name: Install Apache WebServer
     apt: name=apache2 state=latest
+
+# Start Apache and put him in boot
+  - name: Start Apache and enable on boot
+    service: name=apache2 state=started enabled=yes
+
+  - name: Copy dir "MyWebSite" to target server
+    copy: src= {{ source_dir }}  {{ destin_dir }} mode =0555
+    loop:
+    - "index.html"
+    - "1.jpg"
+    notify: 
+        - Restart Apache Debian
+
+
+  handlers:
+  - name: Restart Apache Debian
+    service: name=apache2 state=restarted
