@@ -31,14 +31,14 @@
     service: name=apache2 state=started enabled=yes
 
   - name: Copy dir "MyWebSite" to target server
-    copy: src={{ source_dir }}/{{ item }}  dest={{ destin_dir }} mode =0555
-    loop:
-      - "index.html"
-      - "1.jpg"
+    copy: src=./MyWebSite/index.html  dest=/var/www/html mode =0555
+ #   loop:
+  #    - "index.html"
+   #   - "1.jpg"
     notify: 
-       - Restart Apache Debian
+       - Restart Apache
 
 
   handlers:
-  - name: Restart Apache Debian
+  - name: Restart Apache
     service: name=apache2 state=restarted
