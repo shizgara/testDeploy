@@ -6,8 +6,8 @@
 
 # Create variables
   vars:
-    source_file: ./MyWebSite/index.html
-    destin_file: /var/www/html
+    source_dir: ./MyWebSite
+    destin_dir: /var/www/html
 
     
   tasks:
@@ -31,10 +31,10 @@
     service: name=apache2 state=started enabled=yes
 
   - name: Copy dir "MyWebSite" to target server
-    copy: src={{ source_file}}  dest={{ destin_file }} mode=0555
- #   loop:
-  #    - "index.html"
-   #   - "1.jpg"
+    copy: src={{ source_dir}}/{{ item }}  dest={{ destin_dir }} mode=0555
+    loop:
+      - "index.html"
+      - "1.jpg"
  #   notify: 
   #     - Restart Apache
 
