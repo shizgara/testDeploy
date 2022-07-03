@@ -4,12 +4,14 @@
   hosts: tag_Name_Dev_Server
   become : yes
 
-  tasks:
 
-  # Create variables
+ # Create variables
   vars:
     source_dir: ../MyWebSite
     destin_dir: /var/www/html
+
+
+  tasks:
   
   - name: ping dynamic inventory
     ping:
@@ -33,8 +35,8 @@
   - name: Copy dir "MyWebSite" to target server
     copy: src= {{ source_dir }}  {{ destin_dir }} mode =0555
     loop:
-     - "index.html"
-     - "1.jpg"
+    - "index.html"
+    - "1.jpg"
     notify: 
         - Restart Apache Debian
 
