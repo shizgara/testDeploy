@@ -35,10 +35,10 @@
     loop:
       - "index.html"
       - "1.jpg"
- #   notify: 
-  #     - Restart Apache
+    notify: 
+      - Restart Apache
 
 
-  #handlers:
-  #- name: Restart Apache
-  #  service: name=apache2 state=restarted
+  handlers:
+  - name: Restart Apache
+    service: name=apache2 state=restarted
